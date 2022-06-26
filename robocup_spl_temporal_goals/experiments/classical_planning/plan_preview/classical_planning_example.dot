@@ -1,0 +1,12 @@
+strict digraph "" {
+	0	[color=black];
+	1	[color=black];
+	0 -> 1	[color=black,
+		label="move-robot(value_last_ball_position(alias 'ball-current-position'))"];
+	2	[color=black];
+	1 -> 2	[color=black,
+		label="carry-ball(kicking-position)"];
+	3	[color=black];
+	2 -> 3	[color=black,
+		label="kick-to-goal"];
+}

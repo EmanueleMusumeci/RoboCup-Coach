@@ -1,0 +1,8 @@
+numpy
+twisted
+ltlf2dfa
+graphviz
+pygraphviz
+shortuuid
+PyAudio
+SpeechRecognition

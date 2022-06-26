@@ -1,0 +1,31 @@
+            digraph MONA_DFA {
+             rankdir = LR;
+             center = true;
+             size = "14.5,20.5";
+             edge [fontname = Courier];
+             node [height = .5, width = .5];
+             node [shape = doublecircle]; 1;
+             node [shape = circle]; 1;
+             init [shape = plaintext, label = ""];
+init -> 0;
+0 -> 1 [label="True"];
+3 -> 3 [label="True"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint] "];
+1 -> 2 [label="[literal_striker_has_reached_waypoint & ~literal_is_striker_near_ball & ~literal_is_ball_in_goal] ~action_reach_ball"];
+1 -> 3 [label="[literal_striker_has_reached_waypoint & ~literal_is_striker_near_ball & literal_is_ball_in_goal] ~action_reach_ball"];
+1 -> 4 [label="[literal_striker_has_reached_waypoint & ~literal_is_striker_near_ball & ~literal_is_ball_in_goal] action_reach_ball"];
+1 -> 3 [label="[literal_striker_has_reached_waypoint & ~literal_is_striker_near_ball & literal_is_ball_in_goal] action_reach_ball"];
+1 -> 2 [label="[literal_striker_has_reached_waypoint & literal_is_striker_near_ball & ~literal_is_ball_in_goal] ~action_kick_ball"];
+1 -> 3 [label="[literal_striker_has_reached_waypoint & literal_is_striker_near_ball & literal_is_ball_in_goal] ~action_kick_ball"];
+1 -> 4 [label="[literal_striker_has_reached_waypoint & literal_is_striker_near_ball & ~literal_is_ball_in_goal] action_kick_ball"];
+1 -> 3 [label="[literal_striker_has_reached_waypoint & literal_is_striker_near_ball & literal_is_ball_in_goal] action_kick_ball"];
+2 -> 2 [label="True"];
+4 -> 2 [label="[~literal_is_striker_near_ball & ~literal_is_ball_in_goal] ~action_reach_ball"];
+4 -> 3 [label="[~literal_is_striker_near_ball & literal_is_ball_in_goal] ~action_reach_ball"];
+4 -> 4 [label="[~literal_is_striker_near_ball & ~literal_is_ball_in_goal] action_reach_ball"];
+4 -> 3 [label="[~literal_is_striker_near_ball & literal_is_ball_in_goal] action_reach_ball"];
+4 -> 2 [label="[literal_is_striker_near_ball & ~literal_is_ball_in_goal] ~action_kick_ball"];
+4 -> 3 [label="[literal_is_striker_near_ball & literal_is_ball_in_goal] ~action_kick_ball"];
+4 -> 4 [label="[literal_is_striker_near_ball & ~literal_is_ball_in_goal] action_kick_ball"];
+4 -> 3 [label="[literal_is_striker_near_ball & literal_is_ball_in_goal] action_kick_ball"];
+}

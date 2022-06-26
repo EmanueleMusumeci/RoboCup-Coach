@@ -1,0 +1,68 @@
+strict digraph "" {
+	0	[color=black];
+	1	[color=black];
+	0 -> 1	[color=black,
+		label="Fluents:
+~jolly_available
+ & ~jolly_in_position
+ & obstacle_blocking_goal
+ Action:
+move-to-ball"];
+	2	[color=black];
+	0 -> 2	[color=black,
+		label="Fluents:
+~jolly_available
+ & ~jolly_in_position
+ & ~obstacle_blocking_goal
+ Action:
+move-to-ball"];
+	3	[color=black];
+	0 -> 3	[color=black,
+		label="Fluents:
+jolly_available
+ & ~jolly_in_position
+ & ~obstacle_blocking_goal
+ Action:
+move-to-ball"];
+	4	[color=black];
+	0 -> 4	[color=black,
+		label="Fluents:
+jolly_available
+ & jolly_in_position
+ & obstacle_blocking_goal
+ Action:
+move-to-ball"];
+	5	[color=black];
+	0 -> 5	[color=black,
+		label="Fluents:
+jolly_available
+ & ~jolly_in_position
+ & obstacle_blocking_goal
+ Action:
+move-to-ball"];
+	6	[color=black];
+	1 -> 6	[color=black,
+		label="dribble-opponent(goal_position)"];
+	7	[color=black];
+	2 -> 7	[color=black,
+		label="carry-ball-to-kick(kicking_position)"];
+	8	[color=black];
+	3 -> 8	[color=black,
+		label="carry-ball-to-kick(kicking_position)"];
+	9	[color=black];
+	4 -> 9	[color=black,
+		label="pass-ball-to-jolly(jolly_position)"];
+	5 -> 4	[color=black,
+		label="Fluents:
+jolly_in_position
+ Action:
+wait-for-jolly"];
+	5 -> 5	[color=black,
+		label="wait-for-jolly"];
+	10	[color=black];
+	7 -> 10	[color=black,
+		label="kick-to-goal(goal_position)"];
+	11	[color=black];
+	8 -> 11	[color=black,
+		label="kick-to-goal(goal_position)"];
+}

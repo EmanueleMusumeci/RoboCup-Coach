@@ -1,0 +1,17 @@
+site_name: pddl
+repo_name: 'whitemech/pddl'
+repo_url: https://github.com/whitemech/pddl
+site_url: https://whitemech.github.io/pddl
+
+nav:
+    - Home: index.md
+    - Credits: authors.md
+    - How to contribute: contributing.md
+    - Change Log: changelog.md
+    - References: references.md
+
+theme:
+  name: "material"
+markdown_extensions:
+    - markdown_include.include:
+        base_path: docs

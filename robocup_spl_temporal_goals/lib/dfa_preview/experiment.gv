@@ -1,0 +1,32 @@
+            digraph MONA_DFA {
+             rankdir = LR;
+             center = true;
+             size = "60,80";
+             edge [fontname = Courier];
+             node [height = .5, width = .5];
+             node [shape = doublecircle]; 1;
+             node [shape = circle]; 1;
+             init [shape = plaintext, label = ""];
+init -> 0;
+0 -> 1 [label="True"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & ~literal_is_next_waypoint_1] "];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_1"];
+1 -> 1 [label="[~literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & literal_is_next_waypoint_1] action_go_to_waypoint_1"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & ~literal_is_next_waypoint_1] ~action_go_to_waypoint_2"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_2 & ~action_go_to_waypoint_1"];
+1 -> 1 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_2 & action_go_to_waypoint_1"];
+1 -> 1 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & ~literal_striker_has_reached_waypoint_2] action_go_to_waypoint_2"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & ~literal_is_next_waypoint_1] action_go_to_waypoint_2"];
+1 -> 2 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] action_go_to_waypoint_2 & ~action_go_to_waypoint_1"];
+1 -> 1 [label="[~literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] action_go_to_waypoint_2 & action_go_to_waypoint_1"];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & ~literal_striker_has_reached_waypoint_2] "];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & ~literal_is_next_waypoint_1] "];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_1"];
+1 -> 1 [label="[literal_striker_has_reached_waypoint_1 & ~literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] action_go_to_waypoint_1"];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & ~literal_striker_has_reached_waypoint_2] ~action_go_to_waypoint_2"];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & ~literal_is_next_waypoint_1] ~action_go_to_waypoint_2"];
+1 -> 2 [label="[literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_2 & ~action_go_to_waypoint_1"];
+1 -> 1 [label="[literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2 & literal_striker_has_reached_waypoint_2 & literal_is_next_waypoint_1] ~action_go_to_waypoint_2 & action_go_to_waypoint_1"];
+1 -> 1 [label="[literal_striker_has_reached_waypoint_1 & literal_is_next_waypoint_2] action_go_to_waypoint_2"];
+2 -> 2 [label="True"];
+}

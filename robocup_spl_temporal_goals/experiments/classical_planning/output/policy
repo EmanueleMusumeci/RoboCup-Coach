@@ -1,0 +1,21 @@
+digraph G {
+0 [label="{ (not (goal-scored)), (is-at ball ball-current-position), (not (is-at ball goal-target)), (not (is-at ball kicking-position)), (not (is-at ball striker-current-position)), (not (is-at robot1 ball-current-position)), (not (is-at robot1 goal-target)), (not (is-at robot1 kicking-position)), (is-at robot1 striker-current-position) }"];
+1 [label="{ (not (goal-scored)), (is-at ball ball-current-position), (not (is-at ball goal-target)), (not (is-at ball kicking-position)), (not (is-at ball striker-current-position)), (is-at robot1 ball-current-position), (not (is-at robot1 goal-target)), (not (is-at robot1 kicking-position)), (not (is-at robot1 striker-current-position)) }"];
+2 [label="{ (not (goal-scored)), (not (is-at ball ball-current-position)), (not (is-at ball goal-target)), (is-at ball kicking-position), (not (is-at ball striker-current-position)), (not (is-at robot1 ball-current-position)), (not (is-at robot1 goal-target)), (is-at robot1 kicking-position), (not (is-at robot1 striker-current-position)) }"];
+3 [label="{ (goal-scored), (not (is-at ball ball-current-position)), (is-at ball goal-target), (not (is-at ball kicking-position)), (not (is-at ball striker-current-position)), (not (is-at robot1 ball-current-position)), (not (is-at robot1 goal-target)), (is-at robot1 kicking-position), (not (is-at robot1 striker-current-position)) }"];
+0 -> 1 [label="move-robot robot1 striker-current-position ball-current-position", color="#A2BDD8", fontcolor="#A2BDD8"];
+1 -> 2 [label="carry-ball robot1 ball ball-current-position kicking-position", color="#9BADE4", fontcolor="#9BADE4"];
+2 -> 3 [label="kick-to-goal robot1 ball", color="#B58B5C", fontcolor="#B58B5C"];
+subgraph cluster_goal_3 {
+style=filled;
+color=palegreen;
+3;
+label="GOAL";
+}
+subgraph cluster_init {
+style=filled;
+color=lightblue;
+0;
+label="INIT";
+}
+}

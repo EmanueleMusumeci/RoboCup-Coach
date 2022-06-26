@@ -1,0 +1,6 @@
+(define (problem simplestriker)
+    (:domain robocupdeterministic)
+    (:objects ball ballcurrentposition goaltarget kickingposition leftareaentrypoint leftflank middleareaentrypoint rightareaentrypoint rightflank robot1 strikercurrentposition)
+    (:init (initialposition ballcurrentposition) (initialposition strikercurrentposition) (isat ball ballcurrentposition) (isat robot1 strikercurrentposition) (isball ball) (isrobot robot1) (precedes kickingposition goaltarget) (precedes leftareaentrypoint goaltarget) (precedes leftareaentrypoint kickingposition) (precedes leftflank goaltarget) (precedes leftflank kickingposition) (precedes leftflank leftareaentrypoint) (precedes leftflank middleareaentrypoint) (precedes leftflank rightareaentrypoint) (precedes middleareaentrypoint goaltarget) (precedes middleareaentrypoint kickingposition) (precedes rightareaentrypoint goaltarget) (precedes rightareaentrypoint kickingposition) (precedes rightflank goaltarget) (precedes rightflank kickingposition) (precedes rightflank leftareaentrypoint) (precedes rightflank middleareaentrypoint) (precedes rightflank rightareaentrypoint))
+    (:goal (val_isat_ball_goaltarget-and-Yballkickedto_goaltarget-and-Oballdribbledto_leftflank))
+)

@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-lazy-fixture = "*"
+tox = "*"
+ipython = "*"
+codecov = "*"
+tox-travis = "*"
+black = "==19.10b0"
+mypy = "*"
+flake8 = "*"
+flake8-docstrings = "*"
+mkdocs = "*"
+markdown-include = "*"
+isort = "*"
+mistune = "==2.0.0a4"
+mkdocs-material = "*"
+types-click = "*"
+vulture = "*"
+darglint = "==1.8.0"
+
+[requires]
+python_version = "3.7"
