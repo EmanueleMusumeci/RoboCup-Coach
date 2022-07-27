@@ -1,3 +1,8 @@
+# RoboCup Coach
+
+
+![Temathic logo, representing a human describing a plan vocally and robots thinking that plan as a policy in which some branches are not walkable](/Logo.png)
+
 # Dynamic Behaviors Generation in RoboCup SPL from PDDL+PLTLf formal specification
 
 The idea behind this project is to make a first step towards real-time coaching of robots in RoboCup Soccer SPL, by using online planning in a PDDL domain using temporal goals and constraints. The presented architecture allows a human in the loop to speak temporal goals over PDDL predicates, influencing robot behaviors in real-time.
