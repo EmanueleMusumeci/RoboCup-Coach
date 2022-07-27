@@ -1,7 +1,7 @@
 # RoboCup Coach
 
 
-![Temathic logo, representing a human describing a plan vocally and robots thinking that plan as a policy in which some branches are not walkable](/Logo.png)
+![Temathic logo, representing a human describing a plan vocally and robots thinking that plan as a policy in which some branches are not walkable](/Logo_with_background.png)
 
 # Dynamic Behaviors Generation in RoboCup SPL from PDDL+PLTLf formal specification
 
