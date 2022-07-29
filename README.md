@@ -1,7 +1,9 @@
-# RoboCup Coach
+# [RoboCup Coach](https://sites.google.com/diag.uniroma1.it/robocupcoach)
 
 
 ![Temathic logo, representing a human describing a plan vocally and robots thinking that plan as a policy in which some branches are not walkable](/Logo_with_background.png)
+
+Conditioning collective behaviors with human-understandable instructions
 
 # Dynamic Behaviors Generation in RoboCup SPL from PDDL+PLTLf formal specification
 
