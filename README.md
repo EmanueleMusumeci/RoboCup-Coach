@@ -216,7 +216,17 @@ This command will install the required packages:
 * graphviz
 * pygraphviz
 * shortuuid
-* service_identity
+* PyAudio
+* SpeechRecognition
+* pydot
+* regex
+* pylogics
+
+### Download and install the FOND4LTLFPLTLF
+Install the repo FOND4LTLFPLTLF from the from the [Whitemech research group](https://github.com/whitemech)
+```
+pip install git+https://github.com/whitemech/FOND4LTLfPLTLf.git
+```
 
 <!--### Download and install the `planning-for-past-temporal-goals` repo from the [Whitemech research group](https://github.com/whitemech)
 Follow the [install guide for this repo](https://github.com/whitemech/planning-for-past-temporal-goals/tree/benchmark)
