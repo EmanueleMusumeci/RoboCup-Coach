@@ -6,3 +6,6 @@ pygraphviz
 shortuuid
 PyAudio
 SpeechRecognition
+pydot
+regex
+pylogics

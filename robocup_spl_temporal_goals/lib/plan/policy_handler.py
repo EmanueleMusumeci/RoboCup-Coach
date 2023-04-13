@@ -3,11 +3,9 @@ import os
 from pathlib import Path
 
 from lib.plan.policy import Policy, PolicyEdge, PolicyNode 
-
-
 from lib.registries.action import *
 
-#TODO: get_current_state should 1) Update the Policy 2) return the literals and are actions for the current state (only action is needed but we want this to be more general purpose)
+#TODO: get_current_state should 1) Update the Policy 2) return the literals and actions for the current state (only action is needed but we want this to be more general purpose)
 class PolicyHandler:
     def __init__(self, 
             policy : Policy, 
