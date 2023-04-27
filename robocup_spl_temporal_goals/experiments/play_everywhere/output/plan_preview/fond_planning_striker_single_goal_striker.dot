@@ -1,0 +1,171 @@
+strict digraph "" {
+	0	[color=black];
+	1	[color=black];
+	0 -> 1	[color=black,
+		label="Fluents:
+jolly_available
+ & is_opponent_goal_landmark_available
+ & ~is_opponent_near
+ Action:
+reach-ball"];
+	2	[color=black];
+	0 -> 2	[color=black,
+		label="Fluents:
+jolly_available
+ & is_opponent_goal_landmark_available
+ & is_opponent_near
+ Action:
+reach-ball"];
+	3	[color=black];
+	0 -> 3	[color=black,
+		label="Fluents:
+jolly_available
+ & ~is_opponent_goal_landmark_available
+ & ~is_opponent_near
+ Action:
+reach-ball"];
+	4	[color=black];
+	0 -> 4	[color=black,
+		label="Fluents:
+~jolly_available
+ & is_opponent_goal_landmark_available
+ & ~is_opponent_near
+ Action:
+reach-ball"];
+	5	[color=black];
+	0 -> 5	[color=black,
+		label="Fluents:
+jolly_available
+ & ~is_opponent_goal_landmark_available
+ & is_opponent_near
+ Action:
+reach-ball"];
+	6	[color=black];
+	0 -> 6	[color=black,
+		label="Fluents:
+~jolly_available
+ & is_opponent_goal_landmark_available
+ & is_opponent_near
+ Action:
+reach-ball"];
+	7	[color=black];
+	0 -> 7	[color=black,
+		label="Fluents:
+~jolly_available
+ & ~is_opponent_goal_landmark_available
+ & ~is_opponent_near
+ Action:
+reach-ball"];
+	8	[color=black];
+	0 -> 8	[color=black,
+		label="Fluents:
+~jolly_available
+ & ~is_opponent_goal_landmark_available
+ & is_opponent_near
+ Action:
+reach-ball"];
+	9	[color=black];
+	1 -> 9	[color=black,
+		label="carry-ball(kicking-position)"];
+	10	[color=black];
+	1 -> 10	[color=black,
+		label="Fluents:
+is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	2 -> 9	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	2 -> 10	[color=black,
+		label="carry-ball(kicking-position)"];
+	11	[color=black];
+	3 -> 11	[color=black,
+		label="carry-ball(kicking-position)"];
+	12	[color=black];
+	3 -> 12	[color=black,
+		label="Fluents:
+is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	13	[color=black];
+	4 -> 13	[color=black,
+		label="carry-ball(kicking-position)"];
+	14	[color=black];
+	4 -> 14	[color=black,
+		label="Fluents:
+is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	5 -> 11	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	5 -> 12	[color=black,
+		label="carry-ball(kicking-position)"];
+	6 -> 13	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	6 -> 14	[color=black,
+		label="carry-ball(kicking-position)"];
+	15	[color=black];
+	7 -> 15	[color=black,
+		label="carry-ball(kicking-position)"];
+	16	[color=black];
+	7 -> 16	[color=black,
+		label="Fluents:
+is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	8 -> 15	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(kicking-position)"];
+	8 -> 16	[color=black,
+		label="carry-ball(kicking-position)"];
+	17	[color=black];
+	9 -> 17	[color=black,
+		label="kick-to-goal"];
+	10 -> 1	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(ball-position)"];
+	10 -> 2	[color=black,
+		label="carry-ball(ball-position)"];
+	18	[color=black];
+	11 -> 18	[color=black,
+		label="kick-to-goal"];
+	12 -> 3	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(ball-position)"];
+	12 -> 5	[color=black,
+		label="carry-ball(ball-position)"];
+	19	[color=black];
+	13 -> 19	[color=black,
+		label="kick-to-goal"];
+	14 -> 4	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(ball-position)"];
+	14 -> 6	[color=black,
+		label="carry-ball(ball-position)"];
+	20	[color=black];
+	15 -> 20	[color=black,
+		label="kick-to-goal"];
+	16 -> 7	[color=black,
+		label="Fluents:
+~is_opponent_near
+ Action:
+carry-ball(ball-position)"];
+	16 -> 8	[color=black,
+		label="carry-ball(ball-position)"];
+}

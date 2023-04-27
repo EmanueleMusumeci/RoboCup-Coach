@@ -1,0 +1,11 @@
+strict digraph "" {
+	0	[color=black];
+	1	[color=black];
+	0 -> 1	[color=black,
+		label="Fluents:
+~jolly_available
+ & ~is_opponent_goal_landmark_available
+ & ~is_opponent_near
+ Action:
+move-robot(ball-position)"];
+}

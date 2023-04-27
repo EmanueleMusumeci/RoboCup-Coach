@@ -1,0 +1,17 @@
+digraph G {
+0 [label="{ (not (ball-passed)), (not (ball-safe)), (not (fluent-jolly-available)), (not (fluent-opponent-goal-landmark)), (not (fluent-opponent-near)), (is-at ball ball-position), (not (is-at ball goal-target)), (not (is-at ball striker-position)), (not (is-at robot1 ball-position)), (not (is-at robot1 goal-target)), (is-at robot1 striker-position), (not (jolly-available)), (not (new-axiom@0)), (not (opponent-goal-available)) }"];
+1 [label="{ (not (ball-passed)), (not (ball-safe)), (not (fluent-jolly-available)), (not (fluent-opponent-goal-landmark)), (not (fluent-opponent-near)), (is-at ball ball-position), (not (is-at ball goal-target)), (not (is-at ball striker-position)), (is-at robot1 ball-position), (not (is-at robot1 goal-target)), (not (is-at robot1 striker-position)), (not (jolly-available)), (new-axiom@0), (not (opponent-goal-available)) }"];
+0 -> 1 [label="move-robot robot1 striker-position ball-position", color="#B4268D", fontcolor="#B4268D"];
+subgraph cluster_goal_1 {
+style=filled;
+color=palegreen;
+1;
+label="GOAL";
+}
+subgraph cluster_init {
+style=filled;
+color=lightblue;
+0;
+label="INIT";
+}
+}
