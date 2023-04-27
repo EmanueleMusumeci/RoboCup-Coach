@@ -23,6 +23,9 @@ STREAMABLE(BehaviorStatus, COMMA public BHumanMessageParticle<idBehaviorStatus>
   {,
     unknown,
 
+    approachAndKick,
+    approachAndCarry,
+
     fallen,
     finished,
     initial,

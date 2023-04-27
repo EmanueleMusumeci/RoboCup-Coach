@@ -162,10 +162,13 @@ class ReachPositionCard : public ReachPositionCardBase
       action
       {
         theActivitySkill(BehaviorStatus::reaching_position);
-        Vector2f localTarget = theLibCheck.glob2Rel(theTaskController.currentRobotDestination.translation.x(), theTaskController.currentRobotDestination.translation.y()).translation;
+        //Vector2f localTarget = theLibCheck.glob2Rel(theTaskController.currentRobotDestination.translation.x(), theTaskController.currentRobotDestination.translation.y()).translation;
         //theLookAtPointSkill(Vector3f(localTarget.x(), localTarget.y(), 10.f));
         theLookLeftAndRightSkill();
-        theWalkToTargetPathPlannerSkill(Pose2f(1.f,1.f,1.f), theTaskController.currentRobotDestination);
+        //theWalkToTargetPathPlannerSkill(Pose2f(1.f,1.f,1.f), theTaskController.currentRobotDestination);
+        Vector2f globalDest = theTaskController.currentRobotDestination.translation;
+        Vector2f relative = theLibCheck.glob2Rel(globalDest.x(), globalDest.y()).translation;
+        theWalkToTargetSkill(Pose2f(1.f,1.f,1.f), relative);
       }
     }
 
@@ -178,7 +181,7 @@ class ReachPositionCard : public ReachPositionCardBase
       {
         theActivitySkill(BehaviorStatus::idle);
         theLookForwardSkill();
-        theWalkToTargetPathPlannerSkill(Pose2f(1.f,1.f,1.f), theTaskController.currentRobotDestination);
+        theStandSkill();
       }
     }
 

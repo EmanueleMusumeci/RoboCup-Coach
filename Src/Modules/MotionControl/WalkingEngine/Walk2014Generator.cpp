@@ -447,7 +447,10 @@ void Walk2014Generator::calcNextStep(WalkGenerator& generator,
 
   if(walkMode == WalkGenerator::targetMode)
   {
-    ASSERT(speed.rotation > 0.f && speed.translation.x() > 0.f && speed.translation.y() > 0.f);
+    //std::cout<<"speed.rotation > 0.f: "<<std::to_string(speed.rotation)<<std::endl;
+    //std::cout<<"speed.translation.x() > 0.f: "<<std::to_string(speed.translation.x())<<std::endl;
+    //std::cout<<"speed.translation.y() > 0.f: "<<std::to_string(speed.translation.y())<<std::endl;
+    //ASSERT(speed.rotation > 0.f && speed.translation.x() > 0.f && speed.translation.y() > 0.f);
     maxSpeed = Pose2f(std::min(speed.rotation / odometryScale.rotation, static_cast<float>(this->maxSpeed.rotation)),
                       std::min(speed.translation.x() / odometryScale.translation.x(), this->maxSpeed.translation.x()),
                       std::min(speed.translation.y() / odometryScale.translation.y(), this->maxSpeed.translation.y()));

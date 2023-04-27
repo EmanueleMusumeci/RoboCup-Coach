@@ -289,4 +289,60 @@ namespace Skills
    */
   SKILL_INTERFACE(Esorcista, (const int) direction);
 
+  /**
+   * Implementation of the approaching behavior employed in Challenge 3 of RoboCup 2021
+   * @param target The target to shoot in global coordinates
+   * @param offsetX Offset from the ball
+   * @param offsetY Offset from the ball
+   * @param normalWalkSpeed Normal walk speed
+   * @param slowerWalkSpeed Walk speed while finalizing approach
+   * @param allowLookAround If true, the robot will LookLeftAndRight some of the time. If false, it will always look at the ball.
+   */
+  SKILL_INTERFACE(
+    Approacher2021,
+    (const Pose2f&) target,
+    (float)(230.0) offsetX,
+    (float)(50.0) offsetY,
+    (bool)(false) inWalkKickAtTheEnd,
+    (float)(1.0) normalWalkSpeed,
+    (float)(0.5) slowerWalkSpeed,
+    (bool)(false) allowLookAround
+  );
+
+
+/**
+   * This skill walks to the ball to approach a global target and kicks to goal or passes.
+   * @param target The target to shoot in global coordinates
+   */
+  SKILL_INTERFACE(WalkToApproach, (const Pose2f&) target, (float) offsetX, (float) offsetY, (bool)(true) useLeft);
+ 
+  /**
+   * Implementation of the approaching behavior employed in Challenge 3 of RoboCup 2021
+   * @param target The target to shoot in global coordinates
+   * @param approachRadius Radial offset from the ball
+   * @param offsetX Offset from the ball
+   * @param offsetY Offset from the ball
+   * @param walkSpeed Walk speed when ball is far away
+   * @param alignmentSpeed Walk speed while aligning to ball
+   * @param kickApproachSpeed Walk speed while finalizing approach
+   * @param approachXRange [lowest distance from ball, highest distance from ball]
+   * @param approachYRange [leftmost horizontal offset of foot from ball, rightmost horizontal offset of foot from ball]
+   * @param allowLookAround If true, the robot will LookLeftAndRight some of the time. If false, it will always look at the ball.
+   */
+  SKILL_INTERFACE(
+    Approacher2021WithRanges,
+    (const Pose2f&) target,
+    (float) approachRadius,
+    (float)(230.0) offsetX,
+    (float)(50.0) offsetY,
+    (bool)(false) inWalkKickAtTheEnd,
+    (float)(1.0) walkSpeed,
+    (float)(0.8) alignmentSpeed,
+    (float)(0.5) kickApproachSpeed,
+    (Rangef)(100, 450) approachXRange,
+    (Rangef)(-100, 100) approachYRange,
+    (Rangef)(-10, 10) smallBallAlignmentRange,
+    (bool)(false) allowLookAround
+  );
+
 }

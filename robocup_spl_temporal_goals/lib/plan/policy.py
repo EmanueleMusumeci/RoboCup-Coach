@@ -526,15 +526,16 @@ class Policy:
         compiler.compile()
         compiled_domain, compiled_problem = compiler.result
 
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
+        if not os.path.exists(Path(output_dir) / "compiled_pddl"):
+            os.makedirs(Path(output_dir) / "compiled_pddl")
 
         try:
             with open(Path(output_dir) / "compiled_pddl" / "new_domain.pddl", "w+") as dom:
                 dom.write(domain_to_string(compiled_domain))
             with open(Path(output_dir) / "compiled_pddl" / "new_problem.pddl", "w+") as prob:
                 prob.write(problem_to_string(compiled_problem))
-        except Exception:
+        except Exception as e:
+            print(e)
             raise IOError(
                 "[ERROR]: Something wrong occurred while writing the compiled domain and problem."
             )

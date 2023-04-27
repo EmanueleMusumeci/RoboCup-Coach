@@ -59,6 +59,10 @@ def setup_conditioned_FOND_policy_for_experiment(problem_name : str, role_to_gen
         mapping_path = generation_data["pddl_mapping_path"]
         working_dir = generation_data["working_dir"]
 
+        #Optional generation data
+        restart_when_completed = False
+        if "loop" in generation_data.keys():
+            restart_when_completed = generation_data["loop"]
 
         if role in role_to_additional_constraints:
             if isinstance(role_to_additional_constraints[role], list):
@@ -78,6 +82,8 @@ def setup_conditioned_FOND_policy_for_experiment(problem_name : str, role_to_gen
                 PLTLf_mapping_path=mapping_path,
                 problem_name = problem_name + "_" + role, 
                 plot = True,
+
+                restart_when_completed = restart_when_completed,
 
                 domain_preprocessing_functions = [],
                 problem_preprocessing_functions = [],
@@ -105,6 +111,10 @@ def setup_FOND_policy_for_experiment(problem_name : str, role_to_generation_data
         problem_path = generation_data["pddl_problem_path"]
         working_dir = generation_data["working_dir"]
 
+        #Optional generation data
+        restart_when_completed = False
+        if "loop" in generation_data.keys():
+            restart_when_completed = generation_data["loop"]
 
         print("Creating Policy for '%s' role from domain file: %s with problem file %s\n" % (role, domain_path, problem_path))
         try:
@@ -115,6 +125,8 @@ def setup_FOND_policy_for_experiment(problem_name : str, role_to_generation_data
 
                 problem_name = problem_name + "_" + role, 
                 plot = True,
+                
+                restart_when_completed = restart_when_completed,
 
                 domain_preprocessing_functions = [],
                 problem_preprocessing_functions = [],

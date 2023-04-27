@@ -14,8 +14,6 @@ from lib.plan.policy_handler import PolicyHandler
 from lib.registries.literals import LiteralRegistry
 from lib.registries.values import ValueRegistry
 
-#from frontend.shell import InputShell
-
 class BehaviorControlMode(Enum):
     TASK_MODE = 0
     PLAN_MODE = 1
@@ -79,6 +77,8 @@ class CommunicationManager(metaclass=Singleton):
         self.UNKNOWN_ROLE = "unknown"
         #Value used by the framework when the current role of the robot can not be established yet (depends on the coordination algorithm of the robot)
         self.UNDEFINED_ROLE = "undefined"
+        #Prefix used by the framework for robot roles that search the ball
+        self.SEARCHER_ROLE_PREFIX = "searcher"
 
         self.robot_tasks = {}
 
@@ -254,7 +254,7 @@ class CommunicationManager(metaclass=Singleton):
         elif robot_number is not None:
             robot_role = self.getRobotRoleFromNumber(robot_number)
 
-        if robot_number is not None and robot_role != self.UNDEFINED_ROLE and self.robot_role_to_behavior_control_mode[robot_role] != BehaviorControlMode.PLAN_MODE:
+        if robot_number is not None and robot_role != self.UNDEFINED_ROLE and not robot_role.startswith(self.SEARCHER_ROLE_PREFIX) and self.robot_role_to_behavior_control_mode[robot_role] != BehaviorControlMode.PLAN_MODE:
             self.scheduleRobotTasksReset(robot_number=robot_number)
 
         if robot_role != self.UNKNOWN_ROLE:

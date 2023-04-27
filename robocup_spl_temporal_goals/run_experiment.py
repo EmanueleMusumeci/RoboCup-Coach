@@ -112,7 +112,11 @@ if __name__ == "__main__":
                     additional_constraints[role_constraint_tuple[0]].append(match_string_with_constraint_template(role_constraint_tuple[1], policy_generation_data[role_constraint_tuple[0]]["constrainable_predicates"]))
                         
         if args.ask_constraints:
-            for role, constraints in ask_additional_constraints(role_to_generation_data = policy_generation_data).items():
+            asked_constraints = ask_additional_constraints(role_to_generation_data = policy_generation_data).items()
+            print(asked_constraints)
+            for role, constraints in asked_constraints:
+                if role not in additional_constraints:
+                    additional_constraints[role] = []    
                 additional_constraints[role].extend(constraints)
             
         plan_handlers = chosen_domain.setup(additional_constraints)

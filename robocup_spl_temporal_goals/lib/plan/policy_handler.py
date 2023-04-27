@@ -21,6 +21,8 @@ class PolicyHandler:
             FOND : bool = False,
 
             problem_name : str = None,
+
+            restart_when_completed : bool = True,
         ):
 
         self.pddl_domain_path = pddl_domain_path
@@ -31,6 +33,9 @@ class PolicyHandler:
         self.working_dir = working_dir
 
         self.FOND = FOND
+
+        #Restore the initial state of the policy when completed
+        self.restart_when_completed = restart_when_completed
 
         if problem_name is not None:
             assert isinstance(problem_name, str)
@@ -62,6 +67,8 @@ class PolicyHandler:
         working_dir : str = None, 
         problem_name : str = None, 
         plot : bool = False, 
+
+        restart_when_completed : bool = False,
         
         domain_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
         problem_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
@@ -83,7 +90,9 @@ class PolicyHandler:
 
             working_dir = working_dir,
 
-            problem_name = problem_name
+            problem_name = problem_name,
+
+            restart_when_completed=restart_when_completed
         )
     
         return policy_handler
@@ -121,6 +130,8 @@ class PolicyHandler:
         
         problem_name : str = None, 
         plot : bool = False, 
+
+        restart_when_completed : bool = False,
             
         domain_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
         problem_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
@@ -143,7 +154,9 @@ class PolicyHandler:
             
             working_dir = working_dir,
 
-            problem_name = problem_name
+            problem_name = problem_name,
+
+            restart_when_completed=restart_when_completed
         )
 
         return policy_handler
@@ -162,6 +175,8 @@ class PolicyHandler:
         
         problem_name : str = None, 
         plot : bool = False, 
+
+        restart_when_completed : bool = False,
         
         domain_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
         problem_preprocessing_functions : List[Dict[Dict[str, Any], Callable]] = [], 
@@ -187,7 +202,9 @@ class PolicyHandler:
 
             FOND = True,
 
-            problem_name = problem_name
+            problem_name = problem_name,
+
+            restart_when_completed=restart_when_completed
         )
 
         return policy_handler
@@ -218,13 +235,14 @@ class PolicyHandler:
         self.reset()
 
 
-    def reset(self):
+    def reset(self, reset_trace = True):
         self.__current_state : PolicyNode = self.policy.initial_state
         self.__current_edge = None
 
-        self.__previous_state = None
-        self.__previous_edge = None
-        self.__trace = [{"edge" : None, "performed_action" : ActionRegistry().get_idle_action(), "destination_state" : self.__current_state.node_id, "timestamp" : time.time()}]
+        if reset_trace:
+            self.__previous_state = None
+            self.__previous_edge = None
+            self.__trace = [{"edge" : None, "performed_action" : ActionRegistry().get_idle_action(), "destination_state" : self.__current_state.node_id, "timestamp" : time.time()}]
     
     def get_next_action(self, verbose = False):
         action = self.update(verbose)
@@ -259,7 +277,7 @@ class PolicyHandler:
         
         if verbose: print("------------\nUPDATE\n------------\nCurrent node: %s" % (str(self.__current_state.node_id)))
         #Select only edges where all literals are verified
-        verified_edge = None
+
         #print(outgoing_edges)
         if self.policy.is_plan:
             assert len(outgoing_edges) == 1 or len(outgoing_edges) == 0
@@ -269,15 +287,19 @@ class PolicyHandler:
             if edge.is_verified():
                 verified_edges.append(edge)
                 #Even if we found a verified edge, keep looping to check consistency of this plan/policy
-                # (a plan/policy always has ONE verified outgoing edge or ONE verified edge and ONE edge without conditions at each time)
+                # (the current node in a plan/policy always has ONE verified outgoing edge or ONE verified edge and ONE edge without conditions at each time)
         
         #print("\n"+str(verified_edges))
         
         
+        #If the last action was completed
         if self.__trace[-1]["performed_action"].completed or self.__trace[-1]["performed_action"].is_idle_action():
+            #In case there is more than one VERIFIED edge (edge with True conditions or no conditions at all)
             if len(verified_edges) > 1:
+                #there has to be EXACTLY 2 verified edges: one will be an edge with fluents, the other one will be an edge without conditions
                 assert len(verified_edges) == 2, "More than 2 edges are verified"
                 assert (verified_edges[0].get_fluents() and not verified_edges[1].get_fluents()) or (not verified_edges[0].get_fluents() and verified_edges[1].get_fluents())
+                #In this case, give precedence to the edge with fluents
                 if not verified_edges[0].get_fluents():
                     chosen_transition : PolicyEdge = verified_edges[1]
                 else:
@@ -288,12 +310,14 @@ class PolicyHandler:
             else:
                 chosen_transition : PolicyEdge = verified_edges[0]
             if verbose: print("Last action completed")
+        #If the last action was not completed
         else:
             chosen_transition = self.__trace[-1]["edge"]
             if chosen_transition is not None:
                 if verbose: print("Last action NOT completed\nChosing last action")
                 
         #print(chosen_transition)
+        #If there is a new transition available
         if chosen_transition is not None:
             chosen_action : Action = chosen_transition.guard_action
             destination_state : PolicyNode = chosen_transition.to_node
@@ -305,6 +329,14 @@ class PolicyHandler:
 
         #If we're not still repeating the same current action
         if chosen_transition != self.__current_edge:
+
+            #POLICY/PLAN FINISHED: we are going to an idle state
+            if chosen_transition is None:
+                if verbose: print("\tPLAN FINISHED!!!")
+                if self.restart_when_completed:
+                    if verbose: print("\tPlan scheduled for restart: RESTARTING PLAN")
+                    self.reset(reset_trace=False)
+                
             if verbose: print("\tUpdating trace with chosen action '%s'" % (str(chosen_action)))
             #Update previous state/edge and trace in case the new one is different from the previous one
             self.__previous_edge = self.__current_edge
@@ -317,7 +349,7 @@ class PolicyHandler:
             #Transition through the chosen edge
             self.__current_state = destination_state
             self.__current_edge = chosen_transition
-    
+            
         if verbose: print("------------")
         return chosen_action
         

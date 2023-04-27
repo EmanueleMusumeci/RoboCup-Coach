@@ -41,7 +41,16 @@ class GameplayCard : public GameplayCardBase
     //return theGameInfo.state == STATE_PLAYING;
     return theFallDownState.state != FallDownState::fallen &&
               theFallDownState.state != FallDownState::squatting && 
-                !theTaskController.isIdle();
+                (!theTaskController.isIdle() 
+                  ||
+                 theRole.role == Role::RoleType::searcher_1
+                  ||
+                 theRole.role == Role::RoleType::searcher_2
+                  ||
+                 theRole.role == Role::RoleType::searcher_3
+                  ||
+                 theRole.role == Role::RoleType::searcher_4
+                );
   }
 
   bool postconditions() const override
@@ -49,7 +58,16 @@ class GameplayCard : public GameplayCardBase
     //return theGameInfo.state != STATE_PLAYING;
     return theFallDownState.state == FallDownState::fallen ||
            theFallDownState.state == FallDownState::squatting ||
-           theTaskController.isIdle();
+           (theTaskController.isIdle()
+            &&
+            theRole.role != Role::RoleType::searcher_1
+            &&
+            theRole.role != Role::RoleType::searcher_2
+            &&
+            theRole.role != Role::RoleType::searcher_3
+            &&
+            theRole.role != Role::RoleType::searcher_4
+          );
   }
 
   void execute() override

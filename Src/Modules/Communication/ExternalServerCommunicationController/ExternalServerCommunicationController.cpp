@@ -72,14 +72,27 @@ ExternalServerCommunicationController::ExternalServerCommunicationController(){
     ASSERT(this->TARGET_IP_ADDRESS.length()>0);
     ASSERT(this->READ_IP_ADDRESS.length()>0);
 
-    //IF on the robot, make this print well visible in the log
+
     if(SystemCall::getMode() == SystemCall::Mode::physicalRobot)
     {
-        READ_IP_ADDRESS = SystemCall::getHostAddr();
+        //IF on the robot and the .cfg IP address is an empty string get it automatically (CURRENTLY BUGGY)
+        if(READ_IP_ADDRESS.length() == 0)
+        {
+            std::cout<<"NO IP ADDRESS FOUND IN .cfg FILE, ATTEMPTING AUTOMATIC RETRIEVAL"<<std::endl;
+            std::cout<<"#################################\n\n# PHYSICAL ROBOT #\n\n#################################"<<std::endl;
+            READ_IP_ADDRESS = SystemCall::getHostAddr();
+        }
     }
     else
     {
+        //IF in simulator, use loopback
+        std::cout<<"#################################\n\n# SIMULATED ROBOT #\n\n#################################"<<std::endl;
         READ_IP_ADDRESS = std::string("127.0.0.1");
+    }
+
+    if(SystemCall::getMode() != SystemCall::Mode::physicalRobot)
+    {
+        //IF in simulator, use loopback
         TARGET_IP_ADDRESS = std::string("127.0.0.1");
     }
     std::cout<<"#################################\n\n# LOCAL INTERFACE IP: "<<READ_IP_ADDRESS<<" - "<<SystemCall::getHostName()<<" #\n\n#################################"<<std::endl;

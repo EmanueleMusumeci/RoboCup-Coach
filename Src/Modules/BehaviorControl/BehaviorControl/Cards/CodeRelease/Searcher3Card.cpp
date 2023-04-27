@@ -68,6 +68,7 @@ class Searcher3Card : public Searcher3CardBase
 
     initial_state(start)
     {
+      std::cout<<"SEARCHER_3: start"<<std::endl;
       transition
       {
         goto turnToOldBall;
@@ -129,11 +130,7 @@ class Searcher3Card : public Searcher3CardBase
       action
       {
         theLookForwardSkill();
-        if(theRobotPose.translation.y() > 0){
-            theWalkAtRelativeSpeedSkill(Pose2f(-0.5f,0.f,0.f));
-        }else{
-            theWalkAtRelativeSpeedSkill(Pose2f(0.5f,0.f,0.f));
-        }
+        theWalkAtRelativeSpeedSkill(Pose2f(0.5f,0.f,0.f));
       }
     }
   }

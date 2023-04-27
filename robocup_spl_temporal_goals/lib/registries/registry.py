@@ -52,6 +52,7 @@ class Registry(metaclass=Singleton):
             raise KeyError
         return found_in_registry
 
+
     def register_alias(self, item_name : str, alias_name : str):
         assert isinstance(item_name, str)
         assert isinstance(alias_name, str)
@@ -59,6 +60,15 @@ class Registry(metaclass=Singleton):
         complete_item_name = self.get_complete_name(item_name)
         assert complete_alias_name not in self.__item_aliases.keys()
         self.__item_aliases[complete_alias_name] = complete_item_name
+
+    def register_ball_position_alias(self, alias_name : str):
+        assert isinstance(alias_name, str)
+        complete_alias_name = self.get_complete_name(alias_name)
+        complete_item_name = self.get_complete_name("last_ball_position")
+        assert complete_alias_name not in self.__item_aliases.keys()
+        self.__item_aliases[complete_alias_name] = complete_item_name
+
+
 
     def is_alias_name(self, item_name : str):
         assert isinstance(item_name, str)

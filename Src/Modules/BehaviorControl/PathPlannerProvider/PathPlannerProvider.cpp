@@ -15,6 +15,7 @@
 #include "Tools/Debugging/DebugDrawings3D.h"
 #include "Tools/Debugging/Annotation.h"
 #include <algorithm>
+#include <iostream>
 
 /**
  * Draw a 3D circle parallel to the field plane.
@@ -766,7 +767,17 @@ void PathPlannerProvider::calcMotionRequest(const Pose2f& target, const Pose2f& 
     motionRequest.walkRequest.mode = WalkRequest::relativeSpeedMode;
     motionRequest.walkRequest.speed.translation.x() *= speed.translation.x() * translationFactor + avoidance.x();
     motionRequest.walkRequest.speed.translation.y() *= speed.translation.y() * translationFactor + avoidance.y();
-    motionRequest.walkRequest.speed.rotation *= speed.rotation * pFactor;
+
+//NAN ROTATION SPEED CRASH BUG
+//VERY BAD AND TEMPORARY FIX TO WORK IN DEVELOP, SORRY :-(
+    if(std::isnan(speed.rotation * pFactor))
+    {
+      std::cout<<"std::isnan(speed.rotation * pFactor): "<<std::to_string(std::isnan(speed.rotation * pFactor))<<std::endl;
+    }
+    else
+    {
+      motionRequest.walkRequest.speed.rotation *= speed.rotation * pFactor;
+    }
     turnAngleIntegrator = 0.f;
   }
   else
@@ -780,6 +791,17 @@ void PathPlannerProvider::calcMotionRequest(const Pose2f& target, const Pose2f& 
     motionRequest.walkRequest.speed.translation.y() *= avoidance.y();
     motionRequest.walkRequest.speed.rotation *= clip(turnAngle * pFactor + turnAngleIntegrator * iFactor, -1.f, 1.f);
 
+//NAN ROTATION SPEED CRASH BUG
+//VERY BAD AND TEMPORARY FIX TO WORK IN DEVELOP, SORRY :-(
+    if(std::isnan(clip(turnAngle * pFactor + turnAngleIntegrator * iFactor, -1.f, 1.f)))
+    {
+      std::cout<<"std::isnan(clip(turnAngle * pFactor + turnAngleIntegrator * iFactor, -1.f, 1.f)): "<<std::to_string(std::isnan(clip(turnAngle * pFactor + turnAngleIntegrator * iFactor, -1.f, 1.f)))<<std::endl;
+    }
+    else
+    {
+      motionRequest.walkRequest.speed.rotation *= clip(turnAngle * pFactor + turnAngleIntegrator * iFactor, -1.f, 1.f);
+    }
+    
     turnAngleIntegrator += turnAngle - antiWindupFactor * (motionRequest.walkRequest.speed.rotation - clip<float>(motionRequest.walkRequest.speed.rotation, -antiWindupSaturation, antiWindupSaturation));
     turnAngleIntegrator = clip(turnAngleIntegrator, -1.f, 1.f);
   }

@@ -67,6 +67,7 @@ class Searcher4Card : public Searcher4CardBase
 
     initial_state(start)
     {
+      std::cout<<"SEARCHER_4: start"<<std::endl;
       transition
       {
         srand(time(NULL));

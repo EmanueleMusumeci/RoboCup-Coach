@@ -67,6 +67,7 @@ class Searcher1Card : public Searcher1CardBase
 
     initial_state(start)
     {
+      std::cout<<"SEARCHER_1: start"<<std::endl;
       transition
       {
         goto walkToPoint_far;
