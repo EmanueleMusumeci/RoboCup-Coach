@@ -1,0 +1,6 @@
+(define (problem simple-striker)
+    (:domain robocup)
+    (:objects ball ballposition goaltarget kickingposition robot1 strikerposition)
+    (:init (is-ball ball) (is-location ballposition) (is-location goaltarget) (is-location kickingposition) (is-location strikerposition) (is-robot robot1) (isat ball ballposition) (isat robot1 strikerposition))
+    (:goal (val_Oisat_robot1_ballposition-and-ballsafe-S-isat_robot1_ballposition-and-Ogoalscored))
+)
