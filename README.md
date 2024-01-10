@@ -1,20 +1,18 @@
-# Dynamic Behaviors Generation in RoboCup SPL from PDDL+PLTLf formal specification
+# NaoGPT: LLM-based behavior generation in RoboCup SPL
 
-The idea behind this project is to make a first step towards real-time coaching of robots in RoboCup Soccer SPL, by using online planning in a PDDL domain using temporal goals and constraints. The presented architecture allows a human in the loop to speak temporal goals over PDDL predicates, influencing robot behaviors in real-time.
+Description
 
-![Possible use case of this project, where a human conditions robot behaviors](/Intro_image.png "The human is now enabled to coach robots at a high-level, through textual or vocal commands, conditioning the generated policies with temporal goals over a pre-defined and context-specific set of conditionable predicates.")
+![Possible use case of this project]()
 
 
-## Paper: [Adaptive Team Behavior Planning using Human Coach Commands](https://sites.google.com/diag.uniroma1.it/robocupcoach/home?authuser=0) 
+## Paper: [NAOGPT]() 
 ### Abstract
 
-In the robot’s operating life, the agent is required to act in real environments dealing with rules and constraints that humans ask to satisfy. The set of rules specified by the human might influence the role of the agent without changing the goal or the current task. With similar constraints, a robotic agent in a RoboCup soccer match deals with a partially unobservable, unpredictable and dynamic scenario and can benefit from precise human indications that can condition the robot behavior before or during the time of the match. To this end, classical planning methodologies can be enriched with temporal goals and constraints that enforce non-Markovian properties on past traces. The proposed work aims at exploring the application of real-time dynamic generation of policies whose possible trajectories are compliant with a set of PPLTL rules, introducing novel human-robot interaction modalities for the high-level control of team strategies in RoboCup SPL matches.
 
 ## Install
 
 ### Supported distros:
-* Ubuntu 16.04/16.10/17.04/17.10/18.04/18.10/19.04/19.10/20.04
-* Linux Mint 18.x / 20.x
+
 
 ### Install needed libraries
 Open a terminal `Ctrl`+`Alt`+`t` (usually) and type the followings commands: <br>
@@ -287,6 +285,7 @@ Click on File->Open and then move to the `Config/Scenes` folder and open the req
 
 (NOTICE: you can specify the full path to the `.ros2` file to avoid navigating to it in SimRobot) 
 
+<!--
 ##### Available scenes
 * `fond_striker_no_obstacle.ros2` scene. This scene features one robot, in idle mode, waiting for plan commands. Used for the  `basic_striker`, `striker_with_battery_power_conditioning` and `striker_with_conditioning` experiments.
 * `fond_striker_with_obstacle.ros2` scene. This scene features one robot, in idle mode, waiting for plan commands. Used for the multi-robot `striker_with_pass` experiment (opponent present, no jolly available case).
