@@ -108,7 +108,7 @@ def predicates_once(formula: Once) -> Set[Predicate]:
 @predicates.register
 def predicates_historically(formula: Historically) -> Set[Predicate]:
     """Compute predicate for a Historically formula."""
-    quoted = Predicate(f"Onot-{to_string(formula.argument)}")
+    quoted = Predicate(f"Onot-{replace_symbols(to_string(formula.argument))}")
     sub = predicates_unaryop(formula)
     return sub.union(
         {
